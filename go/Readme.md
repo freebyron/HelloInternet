@@ -6,17 +6,16 @@
 - HeNian Wang
 - Samuel Farid
 
-
 ### How To Build
 
-'''
+<pre>
 go build client.go
 go build server.go
-'''
+</pre>
 
 ### How to Run
 
-'''
+<pre>
 
 # for server, you need to provide HOST
 
@@ -26,7 +25,7 @@ go build server.go
 
 ./clinet HOST PORT
 
-'''
+</pre>
 
 ### Key Concepts
 
@@ -48,4 +47,5 @@ Use the `bufio.NewReader(conn).ReadString('\n')` to read messages
 
 #### Clean up
 
-You should `conn.Close()` a socket when you are done with it.
+You should `connection.Close()` a socket when you are done with it.
+git@github.com:freebyron/HelloInternet.git
