@@ -48,4 +48,3 @@ Use the `bufio.NewReader(conn).ReadString('\n')` to read messages
 #### Clean up
 
 You should `connection.Close()` a socket when you are done with it.
-git@github.com:freebyron/HelloInternet.git
