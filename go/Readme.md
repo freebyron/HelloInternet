@@ -23,7 +23,7 @@ go build server.go
 
 # for client, you need to provide both HOST and PORT
 
-./clinet HOST PORT
+./client HOST PORT
 
 </pre>
 

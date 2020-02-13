@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"strings"
@@ -19,19 +20,20 @@ func main() {
 		fmt.Println("Error listening:", err.Error())
 		os.Exit(1)
 	}
-	defer l.Close()
-	fmt.Println("server started at port " + port)
+	fmt.Println("Starting Go helloSer on port " + port)
 	for i := 0; ; i++ {
+		// Server start to wait for connections
 		conn, err := l.Accept()
 		if err != nil {
-			fmt.Println("Error accepting: ", err.Error())
-			os.Exit(1)
+			log.Fatal("Error accepting: ", err.Error())
 		}
+		// handle a new connection
 		go handle(conn)
 	}
 }
 
 func handle(conn net.Conn) {
+	// waiting for upcoming message
 	message, err := bufio.NewReader(conn).ReadString('\n')
 	if err != nil {
 		conn.Close()
@@ -41,6 +43,8 @@ func handle(conn net.Conn) {
 
 	reply := "GoodBye " + strings.Fields(message)[2] + " from Go\n"
 	fmt.Println("Sending: " + reply)
+
+	// send message
 	fmt.Fprintf(conn, reply)
 	conn.Close()
 }

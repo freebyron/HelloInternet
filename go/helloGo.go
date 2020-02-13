@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"net"
 	"os"
 )
@@ -14,18 +15,21 @@ func main() {
 	}
 	host := os.Args[1]
 	port := os.Args[2]
-	conn, _ := net.Dial("tcp", host+":"+port)
+
+	// create connection
+	conn, err := net.Dial("tcp", host+":"+port)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	handle(conn)
 }
 
 func handle(conn net.Conn) {
 	fmt.Println("Sending: Hello in Go")
 	fmt.Fprintf(conn, "Hello in Go\n")
-	message, err := bufio.NewReader(conn).ReadString('\n')
-	if err != nil {
-		conn.Close()
-		os.Exit(0)
-	}
+
+	// waiting for message
+	message, _ := bufio.NewReader(conn).ReadString('\n')
 	fmt.Print("Recieved: " + message)
 	conn.Close()
 }
