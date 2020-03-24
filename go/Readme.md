@@ -9,21 +9,21 @@
 ### How To Build
 
 <pre>
-go build client.go
-go build server.go
+go build helloGo.go
+go build hellosrvGo.go
 </pre>
 
 ### How to Run
 
 <pre>
 
-# for server, you need to provide HOST
+# for server, you need to provide a PORT to listen on
 
-./server PORT
+./hellosrvGo PORT
 
-# for client, you need to provide both HOST and PORT
+# for client, you need to provide both a HOST and a PORT to connect to
 
-./client HOST PORT
+./helloGo HOST PORT
 
 </pre>
 
